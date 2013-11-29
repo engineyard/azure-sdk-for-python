@@ -563,6 +563,7 @@ class BlobService(_StorageClient):
                             x_ms_blob_content_md5=None,
                             x_ms_blob_content_encoding=None,
                             x_ms_blob_content_language=None,
+                            x_ms_blob_content_length=None,
                             x_ms_lease_id=None):
         '''
         Sets system properties on the blob.
@@ -575,6 +576,7 @@ class BlobService(_StorageClient):
         x_ms_blob_content_md5: Optional. Sets the blob's MD5 hash.
         x_ms_blob_content_encoding: Optional. Sets the blob's content encoding.
         x_ms_blob_content_language: Optional. Sets the blob's content language.
+        x_ms_blob_content_length: Optional. Sets the blob's content length.
         x_ms_lease_id: Required if the blob has an active lease.
         '''
         _validate_not_none('container_name', container_name)
@@ -592,6 +594,8 @@ class BlobService(_StorageClient):
              _str_or_none(x_ms_blob_content_encoding)),
             ('x-ms-blob-content-language',
              _str_or_none(x_ms_blob_content_language)),
+            ('x-ms-blob-content-length', 
+             _str_or_none(x_ms_blob_content_length)),
             ('x-ms-lease-id', _str_or_none(x_ms_lease_id))
         ]
         request.path, request.query = _update_request_uri_query_local_storage(
